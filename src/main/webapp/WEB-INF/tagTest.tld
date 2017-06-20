@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+        version="2.0">
+    <!--description用来添加对taglib(标签库)的描述-->
+    <description>自定义标签库</description>
+    <!--taglib的版本号-->
+    <tlib-version>1.0</tlib-version>
+    <short-name>TagLibrary</short-name>
+    <!--
+        为自定义标签库设置一个uri,uri以/开头,/后面的内容随便写,如这里的/viewIP,
+        在JSP页面中引用标签库时,需要通过uri找到标签库
+        在Jsp页面中就要这样引入标签库:<%@taglib uri="/viewIP" prefix="tagTest"%>
+    -->
+    <uri>/testTag</uri>
+    <!--一个taglib中包含多个自定义标签,每个自定义标签使用一个tag标记来描述-->
+    <!--一个tag标记对应一个自定义标签-->
+    <tag>
+        <description>这个标签的作用是用来输出客户端的IP地址</description>
+        <!--
+            为标签处理器类配一个标签名,在Jsp页面中使用标签时是通过标签名来找到要调用的标签处理器类
+            通过对应的viewIP就能找到对应的ViewIPTag类
+        -->
+        <name>viewIP</name>
+        <tag-class>com.ptteng.tag.ViewIPTag</tag-class>
+        <body-content>empty</body-content>
+
+        <!--<%@taglib uri="标签库的uri"  prefix="标签的使用前缀"%>-->
+    </tag>
+
+    <tag>
+        <name>demo1</name>
+        <tag-class>com.ptteng.tag.DateTransformTag</tag-class>
+        <body-content>JSP</body-content>
+    </tag>
+
+    <tag>
+        <name>demo2</name>
+        <tag-class>com.ptteng.tag.TestTag</tag-class>
+        <body-content>empty</body-content>
+    </tag>
+
+    <tag>
+        <name>repeatDemo</name>
+        <tag-class>com.ptteng.tag.RepeatTag</tag-class>
+        <body-content>JSP</body-content>
+    </tag>
+
+    <tag>
+        <name>simpleTag</name>
+        <tag-class>com.ptteng.tag.SimpleTagDemo1</tag-class>
+        <!--
+            tld文件中有四种标签体类型:empty JSP scriptless tagdepentend
+             在简单标签(SampleTag)中标签体body-content的值只允许是empty和scriptless
+             不允许设置成JSP,如果设置成JSP就会出现异常
+             在传统标签中标签体body-content的值只允许是empty和jsp
+             如果标签体body-content的值设置成tagdepentend,那么就表示标签体里面的内容是给标签处理器类使用的
+
+        -->
+        <body-content>scriptless</body-content>
+    </tag>
+
+    <tag>
+        <name>simpleTag2</name>
+        <tag-class>com.ptteng.tag.SimpleTagDemo2</tag-class>
+        <body-content>scriptless</body-content>
+    </tag>
+    <tag>
+        <name>simpleTag3</name>
+        <tag-class>com.ptteng.tag.SimpleTagDemo3</tag-class>
+        <body-content>empty</body-content>
+    </tag>
+    <tag>
+        <name>simpleTag4</name>
+        <tag-class>com.ptteng.tag.SimpleTagDemo4</tag-class>
+        <body-content>scriptless</body-content>
+        <!--标签的属性描述-->
+        <attribute>
+            <!--标签的count属性-->
+            <name>count</name>
+            <required>true</required>
+            <!--
+                rtexprvalue用来指示标签的属性值是否可以是一个表达式
+                一般设置为true,true就表示允许标签的属性值可以是表达式
+            -->
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+</taglib>
